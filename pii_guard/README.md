@@ -43,6 +43,12 @@ Safety by design: even "Send anyway" never forwards detected PII to the API; the
 - `rag.py`: LangChain documents → BM25 retriever (or Chroma + HuggingFace embeddings with `USE_EMBEDDINGS=1`), optional LLM chain
 - `app.py`: the Gradio UI
 
+## Agent blueprint (not yet wired into app.py)
+
+`ingest.py`, `gate.py`, `retrieval.py`, `memory.py`, `agent.py` and `system_prompt_static.txt` implement the
+personalized RAG agent design (hybrid retrieval, privacy profile, streamed tool-calling agent with an output gate).
+Check them with `python3 test_offline.py` (no API key needed).
+
 ## Known limits / next steps
 
 - Name detection only catches phrasing like "my name is…" / "I'm…". For stronger detection, swap in Microsoft Presidio or a spaCy NER model behind `detect_pii()`.
